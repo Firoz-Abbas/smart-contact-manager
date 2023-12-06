@@ -4,11 +4,10 @@ package com.smart.controller;
 import com.smart.dao.UserRepository;
 import com.smart.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HomeController {
@@ -27,6 +26,14 @@ public class HomeController {
     @RequestMapping("/signup")
     public String signup(Model model){
         model.addAttribute("Register", "about - Smart Contact Manager");
+        model.addAttribute("user", new User());
+        return "signup";
+    }
+
+    @RequestMapping(value="/do_register", method = RequestMethod.POST)
+    public String registerUser(@ModelAttribute("user") User user, @RequestParam(value="agreement", defaultValue = "false") boolean agreement, Model model){
+        System.out.println("Agreement" +agreement);
+        System.out.println("USER" +user);
         return "signup";
     }
 }
