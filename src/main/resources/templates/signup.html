@@ -10,30 +10,47 @@
        <div class="row">
            <div class="col-md-6 offset-md-3">
                 <div class="my-card mt-2">
+                    <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert">
+                        <p th:text="${session.message.content}"></p>
+                        <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                    </div>
                     <div class="container text-center">
                         <img width="50px" src="" th:src="@{/image/machine.png}">
                     </div>
                     <h4 class="text-center">Register Here !!</h4>
-                    <form action="" th:action="@{/do_register}" method="post" th:object="${user}">
+                    <form novalidate action="" th:action="@{/do_register}" method="post" th:object="${user}">
                         <!--Name field-->
                         <div class="form-group mt-2">
                             <label for="name_field">Your Name</label>
-                            <input name="name" type="text" class="form-control" id="name_field" th:value="${user.name}" aria-describedby="emailHelp" placeholder="Enter Here" required>
+                            <input name="name" type="text"
+                                   class="form-control"
+                                   th:classappend="${#fields.hasErrors('name')? 'is-invalid':''}"
+                                   id="name_field"
+                                   th:value="${user.name}"
+                                   aria-describedby="emailHelp"
+                                   placeholder="Enter Here" required>
+                            <div class="invalid-feedback" th:each="e:${#fields.errors('name')}" th:text="${e}">
+                                Please provide a valid username.
+                            </div>
                         </div>
 
                         <!--email field-->
                         <div class="form-group mt-2">
                             <label for="email_field">Your Email</label>
-                            <input name="email" type="email" class="form-control" id="email_field" th:value="${user.email}" aria-describedby="emailHelp" placeholder="Enter Here" required>
+                            <input name="email" type="email" class="form-control"
+                                   id="email_field" th:value="${user.email}"
+                                   aria-describedby="emailHelp" placeholder="Enter Here" required>
                         </div>
 
                         <!--password field-->
                         <div class="form-group mt-2">
                             <label for="email_field">Your Password</label>
-                            <input name="password" type="password" class="form-control " id="password_field" aria-describedby="emailHelp" placeholder="Enter Here" required>
+                            <input name="password" type="password" class="form-control "
+                                   th:value="${user.password}" id="password_field"
+                                   aria-describedby="emailHelp" placeholder="Enter Here" required>
                         </div>
                         <div class="form-group mt-2">
-                            <textarea name="about" th:value="${user.about}" placeholder="Enter something yourself" rows="4" class="form-control mt-2"></textarea>
+                            <textarea name="about"  th:value="${user.about}" placeholder="Enter something yourself" rows="4" class="form-control mt-2"></textarea>
                         </div>
                         <!--term and condition agriment-->
                         <div class="form-group form-check">
