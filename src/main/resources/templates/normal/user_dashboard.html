@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>user dashboard</title>
@@ -7,6 +7,9 @@
 <body>
 
 <h1>Welcome user dashboard</h1>
+<h1>User Name <span th:text="${user.name}"></span></h1>
+<h1>User Email <span th:text="${user.email}"></span></h1>
+<h1><a th:href="@{/logout}">Logout</a></h1>
 
 </body>
 </html>
