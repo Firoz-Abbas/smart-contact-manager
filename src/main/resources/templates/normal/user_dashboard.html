@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
 <head>
     <meta charset="UTF-8">
-    <title>user dashboard</title>
+    <title>This is about page</title>
 </head>
 <body>
-
-<h1>Welcome user dashboard</h1>
-<h1>User Name <span th:text="${user.name}"></span></h1>
-<h1>User Email <span th:text="${user.email}"></span></h1>
-<h1><a th:href="@{/logout}">Logout</a></h1>
+<section>
+    <h1>This is dashboard page</h1>
+    <h2>Here we are going to write about smart contact manager</h2>
+</section>
 
 </body>
 </html>

@@ -32,3 +32,74 @@ body{
     color: white !important;
     background-color: #3b5998;
 }
+
+/*For Sidebar*/
+@media only screen and (width: 600px) {
+    .sidebar{
+        display: none;
+        width: 80% !important;
+        background: white;
+        height: 100vh;
+        position: fixed;
+        padding-top: 20px;
+    }
+
+    .content{
+        margin-left: 0% !important;
+    }
+}
+
+.sidebar{
+    width: 18%;
+    background: white;
+    height: 100%;
+    position: fixed;
+    padding-top: 45px;
+}
+
+.sidebarr{
+    width: 3%;
+    background: white;
+    height: 100%;
+    position: fixed;
+    padding-top: 45px;
+}
+.sidebarr a{
+    display: block;
+    width: 100%;
+    padding: 10px 10px;
+    text-decoration: none;
+    color: gray;
+}
+
+.sidebar a{
+    display: block;
+    width: 100%;
+    padding: 10px 25px;
+    text-decoration: none;
+    color: gray;
+}
+
+.sidebar a:hover{
+    background: #e2e2e2;
+}
+
+.sidebar .divider{
+    height: 0.5px;
+    width: 100%;
+    background: #e2e2e2;
+}
+
+/*for Content*/
+
+.content{
+margin-left: 20%;
+}
+
+.sidebar .crosBtn{
+    position: absolute;
+    top: 0px;
+    right: 35px;
+    font-size: 36px;
+    cursor: pointer;
+}
