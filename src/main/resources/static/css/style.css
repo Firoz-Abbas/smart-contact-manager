@@ -50,19 +50,20 @@ body{
 }
 
 .sidebar{
-    width: 18%;
+    width: 200px;
     background: white;
     height: 100%;
     position: fixed;
-    padding-top: 45px;
+    padding-top: 10px;
+
 }
 
 .sidebarr{
-    width: 3%;
+    width: 40px;
     background: white;
     height: 100%;
     position: fixed;
-    padding-top: 45px;
+    padding-top: 10px;
 }
 .sidebarr a{
     display: block;
@@ -70,14 +71,16 @@ body{
     padding: 10px 10px;
     text-decoration: none;
     color: gray;
+    font-size: small;
 }
 
 .sidebar a{
     display: block;
     width: 100%;
-    padding: 10px 25px;
+    padding: 10px 10px;
     text-decoration: none;
     color: gray;
+    font-size: 12px;
 }
 
 .sidebar a:hover{
@@ -93,7 +96,7 @@ body{
 /*for Content*/
 
 .content{
-margin-left: 20%;
+margin-left: 208px;
 }
 
 .sidebar .crosBtn{
