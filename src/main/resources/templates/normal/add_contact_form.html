@@ -6,7 +6,7 @@
 </head>
 <body>
 <section>
-    <div class="card mr-4">
+    <div class="card mr-2">
         <div class="card-body">
             <h1 class="text-center">Add Contact</h1>
             <div class="container-fluid mt-1">
@@ -20,7 +20,7 @@
                                 </div>
                             </div>
 
-                            <input type="text" class="form-control" name="name" id="firstName" placeholder="Enter Name Here">
+                            <input type="text" class="form-control" name="name" id="firstName" placeholder="Enter Name Here" required>
                         </div>
 
                         <!--First Name-->
@@ -31,7 +31,7 @@
                                 </div>
                             </div>
 
-                            <input type="text" class="form-control" name="secondName" id="secondName" placeholder="Enter Nick Name Here">
+                            <input type="text" class="form-control" name="secondName" id="secondName" placeholder="Enter Nick Name Here" required>
                         </div>
 
                         <!--Phone Name-->
@@ -42,7 +42,7 @@
                                 </div>
                             </div>
 
-                            <input type="number" class="form-control" name="phone" id="phone" placeholder="Enter Phone Number Here">
+                            <input type="number" class="form-control" name="phone" id="phone" placeholder="Enter Phone Number Here" required>
                         </div>
 
                         <!--Email Name-->
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
 
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email Here">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email Here" required>
                         </div>
 
                         <!--Work field-->
@@ -64,12 +64,22 @@
                                 </div>
                             </div>
 
-                            <input type="text" class="form-control" name="work" id="work" placeholder="Enter work Here">
+                            <input type="text" class="form-control" name="work" id="work" placeholder="Enter work Here" required>
                         </div>
 
                         <!--Discription-->
                         <div class="input-group mt-3">
-                            <textarea name="description" id="description"  placeholder="Enter description" rows="7" class="form-control"></textarea>
+                            <textarea name="description" id="description"  placeholder="Enter description" rows="7" class="form-control"required></textarea>
+                        </div>
+
+                        <div class="custom-file mt-3">
+                            <input type="file" name="image">
+                        </div>
+
+                        <div class="container mt-3 text-center">
+                            <!--<div class="d-grid">-->
+                                <button class="btn btn-outline-success text-uppercase fw-bold" type="submit">Save Information</button>
+                            <!--</div>-->
                         </div>
 
                     </form>
