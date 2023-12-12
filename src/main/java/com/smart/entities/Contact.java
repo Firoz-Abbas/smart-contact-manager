@@ -1,5 +1,7 @@
 package com.smart.entities;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,7 @@ public class Contact {
     @Column(unique = true)
     private String email;
     private String phone;
-    private String image;
+    private MultipartFile[] image;
     @Column(length = 1000)
     private String description;
 
@@ -27,7 +29,7 @@ public class Contact {
         super();
     }
 
-    public Contact(String name, String secondName, String work, String email, String phone, String image, String description, User user) {
+    public Contact(String name, String secondName, String work, String email, String phone, MultipartFile[] image, String description, User user) {
         this.name = name;
         this.secondName = secondName;
         this.work = work;
@@ -86,11 +88,11 @@ public class Contact {
         this.phone = phone;
     }
 
-    public String getImage() {
+    public MultipartFile[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(MultipartFile[] image) {
         this.image = image;
     }
 

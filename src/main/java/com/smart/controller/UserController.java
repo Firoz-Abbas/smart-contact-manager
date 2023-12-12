@@ -46,7 +46,13 @@ public class UserController {
     }
 
     @PostMapping("/process-contact")
-    public String proccessContact(@ModelAttribute Contact contact){
+    public String proccessContact(@ModelAttribute Contact contact, Principal principal){
+        String name=principal.getName();
+        User user=userRepository.getUserByUserName(name);
+        contact.setUser(user);
+        user.getContacts().add(contact);
+        this.userRepository.save(user);
+        System.out.println("Data >>>>"+contact);
         return "normal/add_contact_form";
     }
 }
