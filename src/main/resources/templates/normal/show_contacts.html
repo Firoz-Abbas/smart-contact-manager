@@ -9,9 +9,9 @@
     <div class="card me-2 ms-1">
         <div class="cord-body text-center">
             <h2>Your Contact</h2>
-            <table class="table table-hover">
+            <table class="table table-hover" style="padding: 0px">
                 <thead>
-                <tr class="table-danger">
+                <tr class="table-danger" >
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
@@ -35,14 +35,13 @@
             </table>
 
             <!--Pagination-->
-            <nav aria-label="Page navigation example">
+            <nav aria-label="Page navigation example" class="me-5">
                 <ul class="pagination justify-content-end">
-                    <li class="page-item"><a class="page-link" href="#" tabindex="-1">Previous</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li th:if="${currentPage!=0}" class="page-item"><a th:href="@{'/user/show-contacts/'+${currentPage-1}}" class="page-link" href="#" tabindex="-1">Previous</a></li>
 
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
+                    <li th:classappend="${currentPage==i-1?'active':''}" th:each="i : ${#numbers.sequence(1, totalPages)}" class="page-item"><a th:href="@{'/user/show-contacts/'+${i-1}}" class="page-link" href="#"><span th:text="${i}"></span></a></li>
+
+                    <li th:if="${currentPage+1!=totalPages}" class="page-item"><a th:href="@{'/user/show-contacts/'+${currentPage+1}}" class="page-link" href="#">Next</a>
                     </li>
                 </ul>
             </nav>
