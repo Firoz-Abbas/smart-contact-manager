@@ -52,7 +52,7 @@
 <div class="sidebar">
     <!--<span onclick="toggleSidebar()" class="span crosBtn">&times;</span>-->
     <a th:href="@{/user/index}" class="item"><i class="fas fa-home"></i> Home</a>
-    <a href="#" class="item"><i class="fas fa-id-card-alt"></i> View Contact</a>
+    <a th:href="@{/user/show-contacts}" class="item"><i class="fas fa-id-card-alt"></i> View Contact</a>
     <a th:href="@{/user/add-contact}" class="item"><i class="fas fa-pencil-alt"></i> Add Contact</a>
     <a href="#" class="item"><i class="fas fa-user-circle"></i> Your Profil</a>
     <a href="#" class="item"><i class="fas fa-cogs"></i> Settins</a>
@@ -74,6 +74,12 @@
 <!--content area-->
 <div class="content mt-5">
     <i onclick="toggleSidebar()" class="fas fa-bars mt-3"></i>
+    <div class="container text-center">
+        <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert">
+            <span th:text="${session.message.content}"></span>
+            <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+        </div>
+    </div>
     <div th:replace="${content}"></div>
 </div>
 <!--end of content area-->

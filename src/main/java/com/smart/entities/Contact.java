@@ -4,6 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -18,7 +19,7 @@ public class Contact {
     @Column(unique = true)
     private String email;
     private String phone;
-    private MultipartFile[] image;
+    private String image;
     @Column(length = 1000)
     private String description;
 
@@ -29,7 +30,7 @@ public class Contact {
         super();
     }
 
-    public Contact(String name, String secondName, String work, String email, String phone, MultipartFile[] image, String description, User user) {
+    public Contact(String name, String secondName, String work, String email, String phone, String image, String description, User user) {
         this.name = name;
         this.secondName = secondName;
         this.work = work;
@@ -88,11 +89,11 @@ public class Contact {
         this.phone = phone;
     }
 
-    public MultipartFile[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(MultipartFile[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -110,21 +111,5 @@ public class Contact {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Contact{" +
-                "cId=" + cId +
-                ", name='" + name + '\'' +
-                ", secondName='" + secondName + '\'' +
-                ", work='" + work + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", image='" + image + '\'' +
-                ", description='" + description + '\'' +
-                ", user=" + user +
-                '}';
     }
 }

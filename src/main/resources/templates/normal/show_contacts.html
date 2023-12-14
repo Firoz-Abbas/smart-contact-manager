@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>This is about page</title>
+</head>
+<body>
+<section>
+    <div class="card me-2 ms-1">
+        <div class="cord-body text-center">
+            <h2>Your Contact</h2>
+            <table class="table table-hover">
+                <thead>
+                <tr class="table-danger">
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr th:each="c :${contacts}">
+                    <th scope="row" th:text="${'SCM'+c.cId}"></th>
+                    <td th:text="${c.name}"></td>
+                    <td th:text="${c.email}"></td>
+                    <td th:text="${c.phone}"></td>
+                    <td>
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                        <button class="btn btn-primary btn-sm">Update</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!--Pagination-->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                    <li class="page-item"><a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>
