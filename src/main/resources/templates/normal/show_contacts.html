@@ -9,7 +9,7 @@
     <div class="card me-2 ms-1">
         <div class="cord-body text-center">
             <h2>Your Contact</h2>
-            <table class="table table-hover" style="padding: 0px">
+            <table class="table table-hover ">
                 <thead>
                 <tr class="table-danger" >
                     <th scope="col">ID</th>
@@ -24,16 +24,23 @@
                 <tr th:each="c :${contacts}">
                     <th scope="row" th:text="${'SCM'+c.cId}"></th>
                     <td align="left" >
-                        <img class="my_profile_picture" src="" th:src="@{'/image/'+${c.image}}" alt="profile photo">
+                        <img id="profileImg" class="my_profile_picture img-zoom" src="" th:src="@{'/image/'+${c.image}}" alt="profile photo">
                         <span th:text="${c.name}"></span></td>
                     <td align="left" >
-                        <a href="" th:href="@{/user/'+${c.cId}'/contact/}"></a>
-                        <span th:text="${c.email}"></span>
+                        <a href="" th:href="@{'/user/'+${c.cId}+'/contact/'}">
+                        <span th:text="${c.email}"></span></a>
                     </td>
                     <td th:text="${c.phone}"></td>
-                    <td>
-                        <button class="btn btn-danger btn-sm">Delete</button>
-                        <button class="btn btn-primary btn-sm">Update</button>
+                    <td style="display: flex; justify-content: center;align-items: center;">
+                        <div>
+                        <button class="btn btn-primary" style="margin-left:2px; height: 27px; width: 27px;display: flex;justify-content: center;align-items: center; ;border-radius: 50%" title="Edit"><i class="bi bi-pencil"></i></button>
+                        </div>
+                        <div>
+                            <button class="btn btn-success" style="margin-left:2px; height: 27px; width: 27px;display: flex;justify-content: center;align-items: center; ;border-radius: 50%" title="Edit"><i class="bi bi-eye"></i></button>
+                        </div>
+                        <div>
+                            <button class="btn btn-danger" style="margin-left:2px; height: 27px; width: 27px;display: flex;justify-content: center;align-items: center; ;border-radius: 50%" title="Edit"><i class="bi bi-trash"></i></button>
+                        </div>
                     </td>
                 </tr>
                 </tbody>

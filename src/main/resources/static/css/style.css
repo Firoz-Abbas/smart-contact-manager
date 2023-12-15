@@ -109,8 +109,19 @@ margin-left: 208px;
 
 
 .my_profile_picture{
-    width: 30px;
-    height: 30px;
+    width: 27px;
+    height: 27px;
     object-fit: cover;
+    background-position: center center;
     border-radius: 50%;
+}
+
+.img-zoom {
+    transition: transform 0.2s;
+    margin: 0 auto;
+}
+.img-zoom:hover {
+    position: relative;
+    transform: scale(3.5);
+    z-index: 999999;
 }

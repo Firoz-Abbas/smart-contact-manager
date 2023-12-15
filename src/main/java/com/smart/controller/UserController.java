@@ -24,6 +24,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/user")
@@ -72,6 +73,7 @@ public class UserController {
 //            Proccessing and uploading file
             if (file.isEmpty()){
 //              if file empty then try over message
+                contact.setImage("contact.png");
                 System.out.println("Image is empty");
             }else {
 //                file to forlder
@@ -124,8 +126,12 @@ public class UserController {
 //    showing particular details
 
     @RequestMapping("/{cId}/contact")
-    public String showContactDetail(@RequestParam("cId") Integer cId){
+    public String showContactDetail(@PathVariable("cId") Integer cId, Model model){
         System.out.println("CID"+cId);
+        Optional<Contact> contactOptional =this.contactRepository.findById(cId);
+        Contact contact=contactOptional.get();
+        model.addAttribute("contact", contact);
+
         return "normal/contact_detail";
     }
 }
