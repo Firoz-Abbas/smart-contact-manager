@@ -119,4 +119,13 @@ public class UserController {
         model.addAttribute("totalPages", contacts.getTotalPages());
         return "normal/show_contacts";
     }
+
+
+//    showing particular details
+
+    @RequestMapping("/{cId}/contact")
+    public String showContactDetail(@RequestParam("cId") Integer cId){
+        System.out.println("CID"+cId);
+        return "normal/contact_detail";
+    }
 }
