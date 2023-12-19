@@ -18,7 +18,7 @@ public class User {
     @Size(min = 2, max = 20, message = "min 2 and max 20 are allow")
     private String name;
 
-//    @Column(unique = true)
+    @Column(unique = true)
     private String email;
     private String password;
     private String role;
@@ -28,7 +28,7 @@ public class User {
     private String about;
 
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true)
     private List<Contact> contacts=new ArrayList<>();
 
     public User(){

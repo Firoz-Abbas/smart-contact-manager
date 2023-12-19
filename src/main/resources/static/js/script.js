@@ -13,3 +13,33 @@ const toggleSidebar = () => {
         $(".content").css("margin-left","208px");
     }
 }
+
+
+function myFunction() {
+    var txt;
+    if (confirm("Are you sure!")) {
+        txt = "You pressed OK!";
+    } else {
+        txt = "You pressed Cancel!";
+    }
+    document.getElementById("demo").innerHTML = txt;
+}
+
+const search=()=>{
+    // console.log("searching.....");
+    let query=$("#search-input").val();
+    if (query==''){
+        $("search-result").hide();
+    }else {
+        console.log(query);
+
+        // sending request to server
+        let url=`http://localhost:8080/search/${query}`;
+        fetch(url).then((response)=>{
+            return response.json();
+        }).then(data=>{
+            // data......
+        });
+        $("search-result").show();
+    }
+}

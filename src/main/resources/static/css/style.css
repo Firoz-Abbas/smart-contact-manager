@@ -122,6 +122,21 @@ margin-left: 208px;
 }
 .img-zoom:hover {
     position: relative;
-    transform: scale(3.5);
+    transform: scale(4);
     z-index: 999999;
+}
+
+
+/*search css*/
+
+.search-container{
+    position: relative;
+}
+.search-result{
+    position: absolute;
+    background: white;
+    width:100%;
+    padding: 10px;
+    border: 1px solid gray;
+
 }

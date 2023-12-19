@@ -57,7 +57,7 @@ public class HomeController {
             }
             user.setRole("ROLE_USER");
             user.setEnabled(true);
-            user.setImageUrl("https://cemhri.org/wp-content/uploads/2018/04/Home-Four-Banner-Background-Image.png");
+            user.setImageUrl("contact.png");
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
             System.out.println("Agreement" +agreement);

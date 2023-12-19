@@ -40,9 +40,13 @@
                 <div class="description mt-3">
                     <th  th:utext="${contact.description}"></th>
                 </div>
-                <div class="container d-grid mt-2">
-                <button class="btn btn-danger btn-sm btn-block">Delete</button>
-                <button class="btn btn-primary btn-sm btn-block mt-1">Update</button>
+                <div class="container d-grid mt-2 ms-2 me-2">
+                <a class="btn btn-danger btn-sm btn-block ms-3 me-3" th:href="@{'/user/delete/'+${contact.cId}}">Delete</a>
+                    <form method="post" th:action="@{'/user/update-contact/'+${contact.cId}}">
+                        <div class="container d-grid mt-2">
+                            <button class="btn btn-primary btn-block">Update</button>
+                        </div>
+                        </form>
                 </div>
             </div>
         </div>

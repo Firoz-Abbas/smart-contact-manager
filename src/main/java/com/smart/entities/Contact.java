@@ -1,5 +1,6 @@
 package com.smart.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
@@ -16,7 +17,7 @@ public class Contact {
     private String name;
     private String secondName;
     private String work;
-    @Column(unique = true)
+//    @Column(unique = true)
     private String email;
     private String phone;
     private String image;
@@ -24,6 +25,7 @@ public class Contact {
     private String description;
 
     @ManyToOne
+    @JsonIgnore
     private User user;
 
     public Contact(){
@@ -111,5 +113,13 @@ public class Contact {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+
+
+
+    @Override
+    public boolean equals(Object object){
+        return this.cId==((Contact)object).getcId();
     }
 }
