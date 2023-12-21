@@ -38,7 +38,7 @@ body{
     .sidebar{
         display: none;
         width: 80% !important;
-        background: white;
+        background: #049189 !important;
         height: 100vh;
         position: fixed;
         padding-top: 20px;
@@ -51,46 +51,32 @@ body{
 
 .sidebar{
     width: 200px;
-    background: white;
+    background: #049189 !important;
+    color: #ffffff;
     height: 100%;
     position: fixed;
     padding-top: 10px;
 
 }
 
-.sidebarr{
-    width: 40px;
-    background: white;
-    height: 100%;
-    position: fixed;
-    padding-top: 10px;
-}
-.sidebarr a{
-    display: block;
-    width: 100%;
-    padding: 10px 10px;
-    text-decoration: none;
-    color: gray;
-    font-size: small;
-}
 
 .sidebar a{
     display: block;
     width: 100%;
     padding: 10px 10px;
     text-decoration: none;
-    color: gray;
+    color: #ffffff;
     font-size: 14px;
 }
 
 .sidebar a:hover{
-    background: #e2e2e2;
+    background: #1d9c94 !important;
 }
 
 .sidebar .divider{
-    height: 0.5px;
+    height: 0.1px;
     width: 100%;
-    background: #e2e2e2;
+    background: #1d9c94 !important;
 }
 
 /*for Content*/
@@ -109,8 +95,8 @@ margin-left: 208px;
 
 
 .my_profile_picture{
-    width: 27px;
-    height: 27px;
+    width: 25px;
+    height: 25px;
     object-fit: cover;
     background-position: center center;
     border-radius: 50%;
@@ -136,7 +122,19 @@ margin-left: 208px;
     position: absolute;
     background: white;
     width:100%;
-    padding: 10px;
-    border: 1px solid gray;
+    padding: 1px;
+    border: 0px solid gray;
 
+}
+
+.active{
+    background: #1d9c94 !important;
+}
+.headercolor{
+    background-color: #7c1163 !important;
+    color: #e2e2e2 !important;
+}
+.header1color{
+    background-color: #b4b4b4 !important;
+    color: #ffffff !important;
 }

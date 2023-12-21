@@ -25,7 +25,7 @@
                 <!--</li>-->
 
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/home}">Home</a>
+                    <a class="nav-link" aria-current="page" th:href="@{/home}">Home</a>
                 </li>
 
                 <li class="nav-item">
@@ -51,12 +51,17 @@
 <!--this side bar-->
 <div class="sidebar">
     <!--<span onclick="toggleSidebar()" class="span crosBtn">&times;</span>-->
-    <a th:href="@{/user/index}" class="item"><i class="fas fa-home"></i> Home</a>
-    <a th:href="@{/user/show-contacts/0}" class="item"><i class="fas fa-id-card-alt"></i> View Contact</a>
-    <a th:href="@{/user/add-contact}" class="item"><i class="fas fa-pencil-alt"></i> Add Contact</a>
-    <a th:href="@{/user/profile}" class="item"><i class="fas fa-user-circle"></i> Your Profil</a>
-    <a href="#" class="item"><i class="fas fa-cogs"></i> Settins</a>
-    <a th:href="@{/logout}" class="item"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    <a id="home-link" th:href="@{/user/index}" class="item"><i class="fas fa-home"></i> Home</a>
+    <div class="divider"></div>
+    <a id="view-link" th:href="@{/user/show-contacts/0}" class="item"><i class="fas fa-id-card-alt"></i> View Contact</a>
+    <div class="divider"></div>
+    <a id="add-link" th:href="@{/user/add-contact}" class="item "><i class="fas fa-pencil-alt"></i> Add Contact</a>
+    <div class="divider"></div>
+    <a id="profile-link" th:href="@{/user/profile}" class="item "><i class="fa fa-user"></i> Your Profil</a>
+    <div class="divider"></div>
+    <a href="#" class="item"><i class="fa fa-cogs fa-spin"></i> Settins</a>
+    <div class="divider"></div>
+    <a  th:href="@{/logout}" class="item "><i class="fas fa-sign-out-alt"></i> Logout</a>
     <div class="divider"></div>
 </div>
 

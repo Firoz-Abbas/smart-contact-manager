@@ -3,27 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>This is about page</title>
+
 </head>
 <body>
 <section>
     <div class="card me-2 ms-1">
         <div class="cord-body text-center">
-            <h2>Your Contact</h2>
+            <h2 class="header1color">Your Contact</h2>
             <!--search-->
-            <div class="search-container m-3 col-lg-2">
-                <input onkeyup="search()" id="search-input" type="text" class="form-control" placeholder="Search your contacts"/>
+            <div class="search-container m-1 col-lg-2">
+                <input onkeyup="search()" id="search-input" class="form-control" type="search" placeholder="Search" aria-label="Search">
+                <!--<input onkeyup="search()" id="search-input" type="text" class="form-control" placeholder="Search your contacts"/>-->
                 <div  class="search-result">
-                   
                 </div>
             </div>
-            <table class="table table-hover ">
-                <thead>
-                <tr class="table-danger" >
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Action</th>
+            <div class="table-responsive">
+            <table class="table table-hover" style="font: menu;">
+                <thead >
+                <tr class="headercolor">
+                    <th class="headercolor" scope="col">ID</th>
+                    <th class="headercolor"  scope="col">Name</th>
+                    <th class="headercolor" scope="col">Email</th>
+                    <th class="headercolor" scope="col">Phone</th>
+                    <th class="headercolor" scope="col">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -38,21 +40,23 @@
                         <span th:text="${c.email}"></span></a>
                     </td>
                     <td th:text="${c.phone}"></td>
-                    <td style="display: flex; justify-content: center;align-items: center;">
-
-                        <form method="post" th:action="@{'/user/update-contact/'+${c.cId}}">
-                        <button type="submit" class="btn btn-primary" style="margin-left:2px; height: 32px; width: 31px;display: flex;justify-content: center;align-items: center; ;border-radius: 50%" title="Edit"><i class="bi bi-pencil"></i></button>
-                        </form>
-                        <div>
-                            <a th:href="@{'/user/'+${c.cId}+'/contact/'}" class="btn btn-success" style="margin-left:2px; height: 32px; width: 31px;display: flex;justify-content: center;align-items: center; ;border-radius: 50%" title="Detail"><i class="bi bi-eye"></i></a>
-                        </div>
-                        <div>
-                            <a th:href="@{'/user/delete/'+${c.cId}}" class="btn btn-danger" style="margin-left:2px; height: 25px; width: 25px;display: flex;justify-content: center;align-items: center; " title="Delete"> <!--onclick="myFunction()"--><i class="bi bi-trash"></i></a>
+                    <td >
+                        <div style="display: flex; justify-content: center;align-items: center;">
+                            <form method="post" th:action="@{'/user/update-contact/'+${c.cId}}">
+                                <button type="submit" class="btn btn-primary" style="margin-left:2px; height: 25px; width: 25px;display: flex;justify-content: center;align-items: center; ;border-radius: 50%" title="Edit"><i class="bi bi-pencil"></i></button>
+                            </form>
+                            <div>
+                                <a th:href="@{'/user/'+${c.cId}+'/contact/'}" class="btn btn-success" style="margin-left:2px; height: 25px; width: 25px;display: flex;justify-content: center;align-items: center; ;border-radius: 50%" title="Detail"><i class="bi bi-eye"></i></a>
+                            </div>
+                            <div>
+                                <a th:href="@{'/user/delete/'+${c.cId}}" class="btn btn-danger" style="margin-left:2px; height: 25px; width: 25px;display: flex;justify-content: center;align-items: center; " title="Delete"> <!--onclick="myFunction()"--><i class="bi bi-trash"></i></a>
+                            </div>
                         </div>
                     </td>
                 </tr>
                 </tbody>
             </table>
+            </div>
 
             <!--Pagination-->
             <nav aria-label="Page navigation example" class="me-5">
@@ -67,7 +71,18 @@
             </nav>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        // function viewactive(){
+        //     $('#view-link').addClass('active');
+        //     console.log("view checking")
+        // }
+        $(document).ready(()=>{
+            $('.item').removeClass('active');
+            $('#view-link').addClass('active');
+        })
 
+    </script>
 </section>
 </body>
 </html>
