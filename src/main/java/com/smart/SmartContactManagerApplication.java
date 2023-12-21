@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SmartContectManagerApplication {
+public class SmartContactManagerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SmartContectManagerApplication.class, args);
+		SpringApplication.run(SmartContactManagerApplication.class, args);
 	}
 
 }

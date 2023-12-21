@@ -5,7 +5,6 @@ import com.smart.dao.UserRepository;
 import com.smart.entities.Contact;
 import com.smart.entities.User;
 import com.smart.helper.Message;
-import com.smart.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
@@ -23,7 +22,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -223,6 +221,13 @@ public class UserController {
     public String yourProfile(Model model){
         model.addAttribute("title", "Profile");
         return "normal/profile";
+    }
+
+//    open setting handler
+
+    @GetMapping("/settings")
+    public String openSettings(){
+        return "normal/settings";
     }
 
 }
