@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>This is about page</title>
+</head>
+<body>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-6 col-lg-6 mx-auto">
+                <div class="card border-0 shadow rounded-3 my-5">
+                    <div class="card-body p-2 p-sm-5">
+                        <div class="container text-center">
+                            <img width="50px" src="" th:src="@{/image/295128.png}">
+                        </div>
+                        <h5 class="card-title text-center m-3  text-uppercase fa-bold">Enter Your Registered Email</h5>
+                        <div th:if="${param.error}" class="alert alert-danger">
+                            Invalid username and password
+                        </div>
+                        <div th:if="${param.logout}" class="alert alert-danger">
+                            You have been logged out
+                        </div>
+                        <form th:action="@{/send-otp}" method="post">
+                            <div class="form-group">
+                                <input name="email" type="email" class="form-control" placeholder="Enter email here" required>
+                            </div>
+                            <div class="d-grid mt-2">
+                                <button class="btn btn-outline-warning btn-login text-uppercase fw-bold" type="submit">Send OTP</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+</body>
+</html>

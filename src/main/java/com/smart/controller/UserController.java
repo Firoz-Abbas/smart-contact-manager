@@ -42,7 +42,7 @@ public class UserController {
     @ModelAttribute
     public void addCommonData(Model model, Principal principal){
         String userName=principal.getName();
-        System.out.println("user name >"+userName);
+//        System.out.println("user name >"+userName);
         User user=userRepository.getUserByUserName(userName);
         System.out.println("user  >"+user);
         model.addAttribute("user",user);
@@ -76,21 +76,21 @@ public class UserController {
             if (file.isEmpty()){
 //              if file empty then try over message
                 contact.setImage("contact.png");
-                System.out.println("Image is empty");
+//                System.out.println("Image is empty");
             }else {
 //                file to forlder
                 contact.setImage(file.getOriginalFilename());
                 File saveFile=new ClassPathResource("static/image").getFile();
                 Path path = Paths.get(saveFile.getAbsolutePath()+File.separator+file.getOriginalFilename());
                 Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-                System.out.println("Image is uploaded");
+//                System.out.println("Image is uploaded");
 
             }
 
             contact.setUser(user);
             user.getContacts().add(contact);
             this.userRepository.save(user);
-            System.out.println("Data >>>>"+contact);
+//            System.out.println("Data >>>>"+contact);
 
             session.setAttribute("message", new Message("Successfully Added !!! Add more","alert-success"));
 
@@ -129,7 +129,7 @@ public class UserController {
 
     @RequestMapping("/{cId}/contact")
     public String showContactDetail(@PathVariable("cId") Integer cId, Model model, Principal principal){
-        System.out.println("CID"+cId);
+//        System.out.println("CID"+cId);
         Optional<Contact> contactOptional =this.contactRepository.findById(cId);
         Contact contact=contactOptional.get();
         String userName=principal.getName();
@@ -195,7 +195,7 @@ public class UserController {
                 File saveFile=new ClassPathResource("static/image").getFile();
                 Path path = Paths.get(saveFile.getAbsolutePath()+File.separator+file.getOriginalFilename());
                 Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-                System.out.println("Image is uploaded");
+//                System.out.println("Image is uploaded");
 
             }
 
@@ -239,18 +239,18 @@ public class UserController {
 
     @PostMapping("/change-password")
     public String changePassword(@RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword")String newPassword, Principal principal, HttpSession httpSession){
-        System.out.println("OLDPASWORD"+oldPassword);
-        System.out.println("NEWPASWORD"+newPassword);
+//        System.out.println("OLDPASWORD"+oldPassword);
+//        System.out.println("NEWPASWORD"+newPassword);
 
         String useName= principal.getName();
         User currentUser = this.userRepository.getUserByUserName(useName);
-        System.out.println("passwordold"+currentUser.getPassword());
+//        System.out.println("passwordold"+currentUser.getPassword());
 
         if (this.bCryptPasswordEncoder.matches(oldPassword, currentUser.getPassword())){
 //            change password
             currentUser.setPassword(this.bCryptPasswordEncoder.encode(newPassword));
             this.userRepository.save(currentUser);
-            httpSession.setAttribute("message", new Message("Your Password is successfully change","alert-success"));
+            httpSession.setAttribute("message", new Message("Your Password is successfully change !!","alert-success"));
         }else {
 //            error
             httpSession.setAttribute("message", new Message("Please enter correct old password !!","alert-danger"));
