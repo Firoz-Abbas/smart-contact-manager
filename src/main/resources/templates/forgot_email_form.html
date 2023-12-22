@@ -15,11 +15,17 @@
                             <img width="50px" src="" th:src="@{/image/295128.png}">
                         </div>
                         <h5 class="card-title text-center m-3  text-uppercase fa-bold">Enter Your Registered Email</h5>
-                        <div th:if="${param.error}" class="alert alert-danger">
-                            Invalid username and password
-                        </div>
-                        <div th:if="${param.logout}" class="alert alert-danger">
-                            You have been logged out
+                        <!--<div th:if="${param.error}" class="alert alert-danger">-->
+                            <!--Invalid username and password-->
+                        <!--</div>-->
+                        <!--<div th:if="${param.logout}" class="alert alert-danger">-->
+                            <!--You have been logged out-->
+                        <!--</div>-->
+                        <div class="container text-center">
+                            <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert">
+                                <span th:text="${session.message.content}"></span>
+                                <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                            </div>
                         </div>
                         <form th:action="@{/send-otp}" method="post">
                             <div class="form-group">
