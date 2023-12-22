@@ -1,6 +1,7 @@
 package com.smart.controller;
 
 import com.smart.dao.UserRepository;
+import com.smart.entities.User;
 import com.smart.helper.Message;
 import com.smart.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +34,10 @@ public class ForgotController {
     @PostMapping("/send-otp")
     public String sendOtp(@RequestParam("email") String email, HttpSession httpSession, Principal principal){
 
-//        String name = principal.getName();
-//        String userEmail1 = this.userRepository.getUserByUserName(name).getEmail();
+
+        User user = this.userRepository.getUserByUserName(email);
 //        String Mailto="";
-//        if (userEmail1.equalsIgnoreCase(email)){
+//        if (user!=null){
 //            Mailto=email;
 //        }
 
@@ -49,17 +50,34 @@ public class ForgotController {
         String Subject="OTP from SCM";
         String Body=" <h1> OTP = "+otp+"</h1>";
 
-
         boolean flag = this.emailService.sendMail(Mailto, Subject, Body);
-        if (flag){
-            httpSession.setAttribute("otp",otp);
-//            httpSession.setAttribute("message", new Message("OTP sent !!","alert-seccess"));
+        if (flag && user!=null){
+            httpSession.setAttribute("myotp", otp);
+            httpSession.setAttribute("email", email);
+            httpSession.setAttribute("message", new Message("We have sent OTP to your registered Email !!","alert-seccess"));
             return "verify_otp";
         }else {
             httpSession.setAttribute("message", new Message("Check your email id !!","alert-danger"));
             return "forgot_email_form";
         }
 
+
+    }
+
+//    verify-otp
+
+    @PostMapping("/verify-otp")
+    public String verifyotp(@RequestParam("otp") int otp, HttpSession httpSession){
+
+        int myOtp=(int)httpSession.getAttribute("myotp");
+        String email= (String) httpSession.getAttribute("email");
+
+        if (myOtp==otp){
+            return "change_password_form";
+        }else {
+            httpSession.setAttribute("message", new Message("You have enter wrong OTP !!","alert-danger"));
+            return "verify_otp";
+        }
 
     }
 
