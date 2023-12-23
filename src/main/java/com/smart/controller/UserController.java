@@ -44,7 +44,7 @@ public class UserController {
         String userName=principal.getName();
 //        System.out.println("user name >"+userName);
         User user=userRepository.getUserByUserName(userName);
-        System.out.println("user  >"+user);
+//        System.out.println("user  >"+user);
         model.addAttribute("user",user);
 
     }
@@ -188,7 +188,7 @@ public class UserController {
 //                File file1 = new File(deleteFile,oldcontact.getImage());
 //                file1.delete();
                 contact.setImage(oldcontact.getImage());
-                System.out.println("Image is empty");
+//                System.out.println("Image is empty");
             }else {
 //                file to forlder
                 contact.setImage(file.getOriginalFilename());

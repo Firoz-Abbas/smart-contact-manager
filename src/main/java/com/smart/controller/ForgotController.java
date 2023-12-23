@@ -5,6 +5,7 @@ import com.smart.entities.User;
 import com.smart.helper.Message;
 import com.smart.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,9 @@ public class ForgotController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     Random random = new Random(1000);
 
@@ -43,7 +47,7 @@ public class ForgotController {
 
 //        generating 4 digit random number
         int otp = random.nextInt(999999);
-        System.out.println("OTP - "+otp);
+//        System.out.println("OTP - "+otp);
 
 //        write code for send otp to email
         String Mailto=email;
@@ -79,6 +83,18 @@ public class ForgotController {
             return "verify_otp";
         }
 
+    }
+
+//    change password
+
+    @PostMapping("/change-password")
+    public String changePassword(@RequestParam("newPassword") String newPassword, HttpSession httpSession){
+        String email= (String) httpSession.getAttribute("email");
+        User user = this.userRepository.getUserByUserName(email);
+        user.setPassword(this.bCryptPasswordEncoder.encode(newPassword));
+        this.userRepository.save(user);
+//        httpSession.setAttribute("message", new Message("Your Password is successfully change !!","alert-success"));
+        return "redirect:/signin?change=password changed successfully...";
     }
 
 }
