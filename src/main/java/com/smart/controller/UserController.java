@@ -5,6 +5,7 @@ import com.smart.dao.UserRepository;
 import com.smart.entities.Contact;
 import com.smart.entities.User;
 import com.smart.helper.Message;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import com.razorpay.*;
 
 import javax.servlet.http.HttpSession;
 import java.io.File;
@@ -23,6 +25,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -235,7 +238,7 @@ public class UserController {
     }
 
 
-//    change password handler
+    /*change password handler*/
 
     @PostMapping("/change-password")
     public String changePassword(@RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword")String newPassword, Principal principal, HttpSession httpSession){
@@ -260,4 +263,24 @@ public class UserController {
         return "redirect:/user/index";
     }
 
+    /*Creating order for payment*/
+
+    @PostMapping("/create_order")
+    @ResponseBody
+    public String createOrder(@RequestBody Map<String, Object> data) throws Exception {
+
+        int amount = Integer.parseInt(data.get("amount").toString());
+        System.out.println("amount" +amount);
+        RazorpayClient client = new RazorpayClient("rzp_test_EbhFzl2CXAYgz4", "a82zNNQbbCbCOzN7l6GHgtVR");
+
+        JSONObject option=new JSONObject();
+        option.put("amount",amount*100);
+        option.put("currency","INR");
+        option.put("receipt","txt_235425");
+
+        Order order = client.Orders.create(option);
+        System.out.println("order"+order);
+
+        return order.toString();
+    }
 }

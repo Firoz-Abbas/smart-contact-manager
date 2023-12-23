@@ -28,7 +28,8 @@ public class ForgotController {
 
     Random random = new Random(1000);
 
-//    email id form handler
+    /*email id form handler*/
+
     @RequestMapping("/forgot")
     public String openEmailForm(){
         return "forgot_email_form";
@@ -37,19 +38,14 @@ public class ForgotController {
 
     @PostMapping("/send-otp")
     public String sendOtp(@RequestParam("email") String email, HttpSession httpSession, Principal principal){
-
-
         User user = this.userRepository.getUserByUserName(email);
-//        String Mailto="";
-//        if (user!=null){
-//            Mailto=email;
-//        }
 
-//        generating 4 digit random number
+        /*generating 4 digit random number*/
+
         int otp = random.nextInt(999999);
-//        System.out.println("OTP - "+otp);
 
-//        write code for send otp to email
+        /*write code for send otp to email*/
+
         String Mailto=email;
         String Subject="OTP from SCM";
         String Body=" <h1> OTP = "+otp+"</h1>";
@@ -61,14 +57,14 @@ public class ForgotController {
             httpSession.setAttribute("message", new Message("We have sent OTP to your registered Email !!","alert-seccess"));
             return "verify_otp";
         }else {
-            httpSession.setAttribute("message", new Message("Check your email id !!","alert-danger"));
+            httpSession.setAttribute("message", new Message("This email is not registered !!","alert-danger"));
             return "forgot_email_form";
         }
 
 
     }
 
-//    verify-otp
+    /*verify-otp*/
 
     @PostMapping("/verify-otp")
     public String verifyotp(@RequestParam("otp") int otp, HttpSession httpSession){
@@ -85,7 +81,7 @@ public class ForgotController {
 
     }
 
-//    change password
+    /*change password*/
 
     @PostMapping("/change-password")
     public String changePassword(@RequestParam("newPassword") String newPassword, HttpSession httpSession){

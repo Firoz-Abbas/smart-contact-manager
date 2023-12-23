@@ -17,6 +17,23 @@
                 <div class="container mt-3 mb-3 text-center d-grid">
                 <a class="btn btn-primary btn-sm btn-block text-uppercase fw-bold" th:href="@{/user/add-contact}">Add new Contact</a>
                 </div>
+
+                <hr>
+
+                <h5 class="text-center font-italic mt-3">Donate Us</h5>
+
+
+
+                <div class="container text-center">
+                    <div class="text-center d-grid">
+                    <input id="payment_field" type="number" class="form-control me-2" placeholder="Enter amount here">
+                    </div>
+
+                    <div class="mt-3 mb-3 text-center d-grid">
+                        <a onclick="paymentStart()" class="btn btn-success btn-sm btn-block text-uppercase fw-bold" >Pay</a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

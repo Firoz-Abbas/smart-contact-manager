@@ -51,3 +51,39 @@ const search=()=>{
 
     }
 }
+
+// firt request to server to create order of payment
+
+const paymentStart=()=>{
+    console.log("payment started");
+    let amount=$("#payment_field").val();
+    console.log("payment amount "+amount);
+
+    if(amount=="" || amount==null){
+        alert("amount is required !!");
+        return;
+    }
+
+    // code .........
+    // we will use ajex to send request to server to create order
+
+    $.ajax(
+        {
+        url:'/user/create_order',
+        data:JSON.stringify({amount:amount, info:'order_request'}),
+        contentType:'application/json',
+        type:'POST',
+        dataType:'json',
+        success:function(response){
+            // invoked when success
+            console.log(response)
+        },
+        error:function(error){
+            // invoded when error
+            console.log(error)
+            alert("Somthing went wrong !!")
+        }
+    }
+    )
+
+};
