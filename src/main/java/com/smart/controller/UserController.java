@@ -1,8 +1,10 @@
 package com.smart.controller;
 
 import com.smart.dao.ContactRepository;
+import com.smart.dao.MyOrderRepository;
 import com.smart.dao.UserRepository;
 import com.smart.entities.Contact;
+import com.smart.entities.MyOrder;
 import com.smart.entities.User;
 import com.smart.helper.Message;
 import org.json.JSONObject;
@@ -11,6 +13,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +43,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private MyOrderRepository myOrderRepository;
 
 //    method for adding conmmond data for responce
     @ModelAttribute
@@ -267,7 +273,7 @@ public class UserController {
 
     @PostMapping("/create_order")
     @ResponseBody
-    public String createOrder(@RequestBody Map<String, Object> data) throws Exception {
+    public String createOrder(@RequestBody Map<String, Object> data, Principal principal) throws Exception {
 
         int amount = Integer.parseInt(data.get("amount").toString());
 //        System.out.println("amount" +amount);
@@ -281,6 +287,27 @@ public class UserController {
         Order order = client.Orders.create(option);
         System.out.println("order"+order);
 
+        /*Save the order in database*/
+        MyOrder myOrder = new MyOrder();
+        myOrder.setOrderId(order.get("id"));
+        myOrder.setAmount(order.get("amount")+"");
+        myOrder.setReceipt(order.get("receipt"));
+        myOrder.setStatus("created");
+        myOrder.setPaymentId(null);
+        myOrder.setUser(this.userRepository.getUserByUserName(principal.getName()));
+        this.myOrderRepository.save(myOrder);
+
         return order.toString();
+    }
+
+    @PostMapping("/update_order")
+    public ResponseEntity<?> updateOrder(@RequestBody Map<String, Object> data)
+    {
+        MyOrder myorder = this.myOrderRepository.findByOrderId(data.get("order_id").toString());
+        myorder.setPaymentId(data.get("payment_id").toString());
+        myorder.setStatus(data.get("status").toString());
+
+        this.myOrderRepository.save(myorder);
+        return ResponseEntity.ok(Map.of("msg", "updated"));
     }
 }
