@@ -270,7 +270,7 @@ public class UserController {
     public String createOrder(@RequestBody Map<String, Object> data) throws Exception {
 
         int amount = Integer.parseInt(data.get("amount").toString());
-        System.out.println("amount" +amount);
+//        System.out.println("amount" +amount);
         RazorpayClient client = new RazorpayClient("rzp_test_EbhFzl2CXAYgz4", "a82zNNQbbCbCOzN7l6GHgtVR");
 
         JSONObject option=new JSONObject();

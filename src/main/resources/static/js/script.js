@@ -60,7 +60,9 @@ const paymentStart=()=>{
     console.log("payment amount "+amount);
 
     if(amount=="" || amount==null){
-        alert("amount is required !!");
+        // alert("amount is required !!");
+        swal(" Failed!", "amount is required !!", "error");
+
         return;
     }
 
@@ -77,11 +79,59 @@ const paymentStart=()=>{
         success:function(response){
             // invoked when success
             console.log(response)
+            if (response.status=='created'){
+            //    open payment form
+                let options = {
+                    key: "rzp_test_EbhFzl2CXAYgz4", // Enter the Key ID generated from the Dashboard
+                    amount: response.amount, // Amount is in currency subunits. Default currency is
+                    currency: "INR",
+                    name: "Smart contact manager",
+                    description: "Test Transaction",
+                    image: "https://resources.edunexttechnologies.com/html-team/common-images/cbse-logo-blue.png",
+                    order_id: response.id, //This is a sample Order ID. Pass the
+
+                    handler: function (response) {
+                        console.log(response.razorpay_payment_id);
+                        console.log(response.razorpay_order_id);
+                        console.log(response.razorpay_signature)
+                        swal(" Good job!", "Congrates !! Payment successful !!", "success");
+
+                    },
+                    "prefill": {
+                        name: "",
+                        email: "",
+                        contact: "",
+                    },
+                    notes: {
+                        address: "Learn with me",
+                    },
+                    theme: {
+                        color: "#3399cc",
+                    },
+                };
+
+                var rzp = new Razorpay(options);
+                rzp.on('payment.failed', function (response){
+                    console.log(response.error.code);
+                    console.log(response.error.description);
+                    console.log(response.error.source);
+                    console.log(response.error.step);
+                    console.log(response.error.reason);
+                    console.log(response.error.metadata.order_id);
+                    console.log(response.error.metadata.payment_id);
+                    // alert("Oops Payment failed !!")
+                    swal(" Failed!", "Oops Payment failed !!", "error");
+                });
+
+                rzp.open();
+
+            }
         },
         error:function(error){
             // invoded when error
             console.log(error)
-            alert("Somthing went wrong !!")
+            // alert("Somthing went wrong !!")
+            swal(" Failed!", "Somthing went wrong !!", "error");
         }
     }
     )
