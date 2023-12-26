@@ -18,5 +18,7 @@ public interface ContactRepository extends JpaRepository<Contact, Integer> {
 
 //    search
     public List<Contact> findByNameContainingAndUser(String name, User user);
+
+
 }
 
