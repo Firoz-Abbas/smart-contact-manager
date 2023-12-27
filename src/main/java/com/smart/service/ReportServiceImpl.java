@@ -14,6 +14,9 @@ import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -35,27 +38,21 @@ public class ReportServiceImpl implements ReportService {
     private ContactRepository contactRepository;
 
 
-
-    /*@ModelAttribute
-    public void addCommonData(Model model, Principal principal){
+    public int addCommonData(@AuthenticationPrincipal Principal principal){
         User user=userRepository.getUserByUserName(principal.getName());
-        model.addAttribute("user",user);
-        System.out.println("user  >"+user);
-
-    }*/
-//    public void addCommonData(Principal principal){
-//        user=userRepository.getUserByUserName(principal.getName());
-//    }
+        return user.getId();
+    }
 
     @Override
     public void generateExcel(HttpServletResponse response) throws IOException {
-        List<Contact> contacts = this.contactRepository.findAll();
-//        User user = this.userRepository.getUserByUserName(principal.getName());
-//        addCommonData();
-//        Optional<Contact> contacts = this.contactRepository.findById(user.getId());
-//        if (user.getId() == contact.getUser().getId()) {
+//        List<Contact> contacts = this.contactRepository.findAll();
 
-        
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        int userId=addCommonData(authentication);
+
+        List<Contact> contacts1 = this.contactRepository.findContactByUser(userId);
+        System.out.println("contacts  >"+contacts1);
+
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("Contact Information");
         HSSFRow row = sheet.createRow(0);
@@ -115,9 +112,9 @@ public class ReportServiceImpl implements ReportService {
 
         int rowIndex = 2;
 
-
-        for (Contact contact : contacts) {
-            int cellno = 0;
+        for (Contact contact : contacts1) {
+            int cellno=0;
+//            if (!(userId == contact.getUser().getId())) {continue;}
             Row rowvalue = sheet.createRow(rowIndex++);
             createNewCell(rowvalue, cellno++, "" + contact.getcId(), sheet, bodyStyle);
             createNewCell(rowvalue, cellno++, "" + contact.getName(), sheet, bodyStyle);

@@ -32,20 +32,58 @@
                     <!--<a class="nav-link" th:href="@{/about}">About</a>-->
                 <!--</li>-->
 
-                <li class="nav-item">
-                    <a class="nav-link "><span th:text="${user.name}"></span></a>
-                </li>
+                <!--<li class="nav-item">-->
+                    <!--<a class="nav-link "><span th:text="${user.name}"></span></a>-->
+                <!--</li>-->
+
                 <li class="nav-item">
                     <a class="nav-link " th:href="@{/logout}">Logout</a>
                 </li>
             </ul>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <!--<button class="btn btn-outline-success" type="submit">Search</button>-->
+                <div style="width: 300px;text-align: right; padding-top: 5px; color: white;" th:text="${user.name}"></div>
+                <div>
+                    <!--<a th:href="@{'/user/excel/'}" title="Detail" onclick="Showpopup()">-->
+                    <a class="btn fa fa-user text-white" title="Detail" onclick="Showpopup()" data-bs-target="#cartt" data-bs-toggle="modal" >
+                    </a>
+                   <!-- <button  data-bs-target="#cartt" data-bs-toggle="modal">
+                        Your Items
+                    </button>-->
+                    <!--Model-->
+                    <div class="modal fade" id="cartt">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3> Items</h3>
+                                    <button data-bs-dismiss="modal" class="btn-close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Price</th>
+                                            <th>Preview</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--model End-->
+
+                </div>
             </form>
         </div>
     </div>
 </nav>
+
 <!--end of navbar-->
 
 <!--this side bar-->
