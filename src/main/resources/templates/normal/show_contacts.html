@@ -8,8 +8,8 @@
 <body>
 <section>
     <div class="card me-2 ms-1">
-        <div class="cord-body text-center">
-            <h2 class="header1color">Your Contact</h2>
+        <div class="card-body text-center">
+            <h2 class="header1color">Your Contacts</h2>
             <!--search-->
             <div class="container d-flex justify-content-between">
             <div class="search-container m-1 col-lg-2">
@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div>
-                <a th:href="@{'/user/excel/'}" class="btn btn-success"  title="Detail">Export to Excel</a>
+                <a th:href="@{'/user/excel/'}" class="btn btn-success btn-small"  title="Detail">Export to Excel</a>
             </div>
             </div>
             <div class="table-responsive">
@@ -48,13 +48,13 @@
                     <td >
                         <div style="display: flex; justify-content: center;align-items: center;">
                             <form method="post" th:action="@{'/user/update-contact/'+${c.cId}}">
-                                <button type="submit" class="btn btn-primary " style="margin-left:2px; height: 29px; width: 25px;display: flex;justify-content: center;align-items: center; ;border-radius: 50%" title="Edit"><i class="bi bi-pencil"></i></button>
+                                <button type="submit" class="btn btn-primary " style="object-fit: cover;margin-left:2px; height: 25px; width: 25px;display: flex;justify-content: center;align-items: center; ;border-radius: 50%" title="Edit"><i style="font-size: 14px" class="bi bi-pencil"></i></button>
                             </form>
                             <div>
-                                <a th:href="@{'/user/'+${c.cId}+'/contact/'}" class="btn btn-success" style="margin-left:2px; height: 29px; width: 25px;display: flex;justify-content: center;align-items: center; ;border-radius: 50%" title="Detail"><i class="bi bi-eye"></i></a>
+                                <a th:href="@{'/user/'+${c.cId}+'/contact/'}" class="btn btn-success" style="margin-left:2px; height: 25px; width: 25px;display: flex;justify-content: center;align-items: center; ;border-radius: 50%" title="Detail"><i style="font-size: 14px" class="bi bi-eye"></i></a>
                             </div>
                             <div>
-                                <a th:href="@{'/user/delete/'+${c.cId}}" class="btn btn-danger" style="margin-left:2px; height: 25px; width: 25px;display: flex;justify-content: center;align-items: center; " title="Delete"> <!--onclick="myFunction()"--><i class="bi bi-trash"></i></a>
+                                <a th:href="@{'/user/delete/'+${c.cId}}" class="btn btn-danger" style="margin-left:2px; height: 25px; width: 25px;display: flex;justify-content: center;align-items: center; " title="Delete"> <!--onclick="myFunction()"--><i style="font-size: 14px" class="bi bi-trash"></i></a>
                             </div>
                         </div>
                     </td>

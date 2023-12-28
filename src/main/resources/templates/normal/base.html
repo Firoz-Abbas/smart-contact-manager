@@ -46,36 +46,65 @@
                 <div style="width: 300px;text-align: right; padding-top: 5px; color: white;" th:text="${user.name}"></div>
                 <div>
                     <!--<a th:href="@{'/user/excel/'}" title="Detail" onclick="Showpopup()">-->
-                    <a class="btn fa fa-user text-white" title="Detail" onclick="Showpopup()" data-bs-target="#cartt" data-bs-toggle="modal" >
+                    <a class="btn fa fa-user text-white" title="Detail" th:onclick="Showpopup()" data-bs-target="#cartt" data-bs-toggle="modal" >
                     </a>
-                   <!-- <button  data-bs-target="#cartt" data-bs-toggle="modal">
-                        Your Items
-                    </button>-->
-                    <!--Model-->
-                    <div class="modal fade" id="cartt">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h3> Items</h3>
-                                    <button data-bs-dismiss="modal" class="btn-close"></button>
+                    <div class="modal fade center-modal" id="cartt" tabindex="-1" aria-labelledby="SelectClass" aria-hidden="true">
+                        <div class="modal-dialog px-15">
+                            <div class="modal-content rounded-12">
+                                <div class="modal-header pb-0 bb-0">
+                                    <img src="/teacher_assets/assets/images/modal_close.svg" data-bs-dismiss="modal" aria-label="Close" class='img_close'>
+                                    <h5 class="modal-title d-flex align-items-center"><img src="/teacher_assets/assets/images/modalfilter.svg" class="me-1"> Filter</h5>
                                 </div>
                                 <div class="modal-body">
-                                    <table class="table table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th>Title</th>
-                                            <th>Price</th>
-                                            <th>Preview</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        </tbody>
-                                    </table>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <select class="custom-selectpicker form-control">
+                                                <option>Academic Year</option>
+                                                <option>2022-2023</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-12 mt-10">
+                                            <select class="custom-selectpicker form-control">
+                                                <option>Quiz Status</option>
+                                                <option>2022-2023</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-12 mt-10">
+                                            <select class="custom-selectpicker form-control">
+                                                <option>Select Class</option>
+                                                <option>2022-2023</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-12 text-center mt-15">
+                                            <button class="btn-primary rounded-2 px-20 w-80">Apply</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!--Model-->
+                    <!--<div class="modal fade" id="cartt">-->
+                        <!--<div class="modal-dialog">-->
+                            <!--<div class="modal-content">-->
+                                <!--<div class="modal-header">-->
+                                    <!--<h3> Items</h3>-->
+                                    <!--<button data-bs-dismiss="modal" class="btn-close"></button>-->
+                                <!--</div>-->
+                                <!--<div class="modal-body">-->
+                                    <!--<table class="table table-hover">-->
+                                        <!--<thead>-->
+                                        <!--<tr>-->
+                                            <!--<th>Preview</th>-->
+                                        <!--</tr>-->
+                                        <!--</thead>-->
+                                        <!--<tbody>-->
+                                        <!--</tbody>-->
+                                    <!--</table>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
                     <!--model End-->
 
                 </div>
