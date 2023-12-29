@@ -138,3 +138,6 @@ margin-left: 208px;
     background-color: #b4b4b4 !important;
     color: #ffffff !important;
 }
+.modal-backdrop{
+    z-index: 999 !important;
+}

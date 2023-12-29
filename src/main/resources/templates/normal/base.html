@@ -46,38 +46,46 @@
                 <div style="width: 300px;text-align: right; padding-top: 5px; color: white;" th:text="${user.name}"></div>
                 <div>
                     <!--<a th:href="@{'/user/excel/'}" title="Detail" onclick="Showpopup()">-->
-                    <a class="btn fa fa-user text-white" title="Detail" th:onclick="Showpopup()" data-bs-target="#cartt" data-bs-toggle="modal" >
+                    <a class="btn fa fa-user text-white" title="Detail" th:onclick="Showopup()" data-bs-target="#cartt" data-bs-toggle="modal" >
                     </a>
                     <div class="modal fade center-modal" id="cartt" tabindex="-1" aria-labelledby="SelectClass" aria-hidden="true">
                         <div class="modal-dialog px-15">
                             <div class="modal-content rounded-12">
-                                <div class="modal-header pb-0 bb-0">
-                                    <img src="/teacher_assets/assets/images/modal_close.svg" data-bs-dismiss="modal" aria-label="Close" class='img_close'>
-                                    <h5 class="modal-title d-flex align-items-center"><img src="/teacher_assets/assets/images/modalfilter.svg" class="me-1"> Filter</h5>
+                                <div class="modal-header pb-0 bb-0 text-center" >
+                                    <div class="container" th:text="${user.name}"></div>
                                 </div>
                                 <div class="modal-body">
                                     <div class="row">
-                                        <div class="col-sm-12">
-                                            <select class="custom-selectpicker form-control">
-                                                <option>Academic Year</option>
-                                                <option>2022-2023</option>
-                                            </select>
+                                        <div class="col-sm-12 d-flex">
+                                            <form th:action="@{/user/update-user}" enctype="multipart/form-data"  method="post">
+                                            <img style="height: 130px; width: 130px" class="my_profile_picture" src="" th:src="@{'/image/'+${user.imageUrl}}" alt="profile photo">
+                                            <div class=" mt-5">
+                                                <input style="font-size:x-small" type="file" name="userProfileImage" id="userProfileImage">
+                                            </div>
+                                            <div>
+                                            <button class="btn btn-primary rounded-2 mt-5" type="submit">Apply</button>
+                                            </div>
+                                            </form>
                                         </div>
-                                        <div class="col-sm-12 mt-10">
-                                            <select class="custom-selectpicker form-control">
-                                                <option>Quiz Status</option>
-                                                <option>2022-2023</option>
-                                            </select>
+                                        <hr>
+                                        <div class="col-sm-12 mt-10 d-flex justify-content-between">
+                                            <a th:href="@{/logout}" class="container d-flex" style="text-decoration: none">
+                                            <div  class="my_profile_picture" style="background: #1d347c; height: 40px; width: 40px; padding-left: 12px; padding-top: 8px; color: white;">
+                                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                            </div>
+                                                <span style="padding-left: 5px; padding-top: 7px; color: black;">Logout</span>
+                                            </a>
+
+                                            <a th:href="@{/user/settings}" class="container d-flex justify-content-end" style="text-decoration: none">
+                                            <div class="my_profile_picture" style="background: #7c1163; height: 40px; width: 40px; padding-left: 12px; padding-top: 8px; color: white;">
+                                            <i class="bi bi-lock-fill" aria-hidden="true"></i>
+                                            </div>
+                                                <span style="padding-left: 5px; padding-top: 7px; color: black;">Change Password</span>
+                                            </a>
                                         </div>
-                                        <div class="col-sm-12 mt-10">
-                                            <select class="custom-selectpicker form-control">
-                                                <option>Select Class</option>
-                                                <option>2022-2023</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-12 text-center mt-15">
-                                            <button class="btn-primary rounded-2 px-20 w-80">Apply</button>
-                                        </div>
+                                        <!--<div class="col-sm-12 text-center mt-15">-->
+                                            <!--<button class="btn-primary rounded-2 px-20 w-80">Apply</button>-->
+                                        <!--</div>-->
                                     </div>
                                 </div>
                             </div>

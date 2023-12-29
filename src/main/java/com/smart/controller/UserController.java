@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.method.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -179,6 +180,12 @@ public class UserController {
         return "normal/update_form";
     }
 
+    @PostMapping("/update-user")
+    public String updateUser(@RequestParam("userProfileImage") MultipartFile file){
+//        file.getOriginalFilename();
+        System.out.println("file>>>>"+file.getOriginalFilename());
+        return "normal/user_dashboard";
+    }
 
     @PostMapping("/update-contact")
     public String updateContact(@ModelAttribute Contact contact,
