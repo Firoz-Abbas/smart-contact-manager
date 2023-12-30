@@ -1,5 +1,6 @@
 package com.smart.controller;
 
+import com.mysql.cj.Session;
 import com.smart.dao.ContactRepository;
 import com.smart.dao.MyOrderRepository;
 import com.smart.dao.UserRepository;
@@ -24,6 +25,7 @@ import com.razorpay.*;
 
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -31,6 +33,7 @@ import java.nio.file.StandardCopyOption;
 import java.security.Principal;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/user")
@@ -172,6 +175,51 @@ public class UserController {
 
 //    Open Update form handler
 
+
+
+    @PostMapping("/update-user/{id}")
+    public String updateUserForm(Principal principal, Model model){
+        User user = userRepository.getUserByUserName(principal.getName());
+        model.addAttribute("user", user);
+        model.addAttribute("title", "Update Form");
+        return "normal/update_Uform";
+    }
+
+    @PostMapping("update-user")
+    public String updateUser(@ModelAttribute User user, @RequestParam("profileImage") MultipartFile file, Principal principal, HttpSession session) throws IOException {
+
+        try {
+            User olduser = this.userRepository.getUserByUserName(principal.getName());
+            String name = file.getOriginalFilename();
+            if (file.isEmpty()){
+    //            save oldImage
+//                user.setImageUrl(olduser.getImageUrl());
+            }else {
+
+                File deleteFile= new ClassPathResource("static/image").getFile();
+                File file1 = new File(deleteFile,olduser.getImageUrl());
+                file1.delete();
+//                save newImage
+
+                File saveFile=new ClassPathResource("static/image").getFile();
+                String randomID= UUID.randomUUID().toString();
+                String FileName1= randomID.concat(name.substring(name.lastIndexOf(".")));
+                user.setImageUrl(FileName1);
+                Path path = Paths.get(saveFile.getAbsolutePath()+File.separator+FileName1);
+                Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+            }
+
+            this.userRepository.save(user);
+            session.setAttribute("message", new Message("Update Successfully your Profile !!! ","alert-success"));
+        } catch (IOException e) {
+            System.out.println("Error"+e.getMessage());
+            e.printStackTrace();
+            session.setAttribute("message", new Message("Somthing is wrong", "alert-danger"));
+        }
+        return "normal/profile";
+    }
+
+
     @PostMapping("/update-contact/{cId}")
     private String updateForm(@PathVariable("cId") Integer cId, Model model){
         model.addAttribute("title", "Update Form");
@@ -180,12 +228,7 @@ public class UserController {
         return "normal/update_form";
     }
 
-    @PostMapping("/update-user")
-    public String updateUser(@RequestParam("userProfileImage") MultipartFile file){
-//        file.getOriginalFilename();
-        System.out.println("file>>>>"+file.getOriginalFilename());
-        return "normal/user_dashboard";
-    }
+
 
     @PostMapping("/update-contact")
     public String updateContact(@ModelAttribute Contact contact,

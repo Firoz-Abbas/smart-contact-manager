@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>This is about page</title>
+</head>
+<body>
+<section>
+    <div class="card mr-2">
+        <div class="card-body">
+            <h2 class="text-center">Update Profile</h2>
+            <div class="container-fluid mt-1">
+                <div class="col-md-10 offset-md-1">
+                    <form th:action="@{/user/update-user}" th:object="${user}" enctype="multipart/form-data" class="mt-2" method="post">
+                        <!--image -->
+                        <div class="container text-center">
+                            <img style="height: 200px; width: 200px" class="my_profile_picture" src="" th:src="@{'/image/'+${user.imageUrl}}" alt="profile photo">
+                            <p class="text-secondary">Choose new profile pic</p>
+                        </div>
+                        <div class="text-center mt-3 ms-3">
+                            <input th:value="user.profileImage" type="file" name="profileImage">
+                        </div>
+
+
+                        <!--First Name-->
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa-plus mt-1 mb-1"></i>
+                                </div>
+                            </div>
+
+                            <input th:value="${user.id}" type="hidden" class="form-control" name="id" >
+                            <input th:value="${user.name}" type="text" class="form-control" name="name" id="firstName" placeholder="Enter Name Here" required>
+                        </div>
+
+                        <!--&lt;!&ndash;First Name&ndash;&gt;-->
+                        <!--<div class="input-group mt-3">-->
+                            <!--<div class="input-group-prepend">-->
+                                <!--<div class="input-group-text">-->
+                                    <!--<i class="fas fa-user-alt mt-1 mb-1"></i>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<img style="height: 200px; width: 200px" class="my_profile_picture" src="" th:src="@{'/image/'+${user.imageUrl}}" alt="profile photo">-->
+                        <!--</div>-->
+
+
+                        <div class="container mt-3 text-center">
+                            <!--<div class="d-grid">-->
+                            <button class="btn btn-outline-success text-uppercase fw-bold" type="submit">Save Information</button>
+                            <!--</div>-->
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#description'
+        });
+    </script>
+
+</section>
+
+</body>
+</html>

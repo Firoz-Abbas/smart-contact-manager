@@ -36,9 +36,9 @@
                     <!--<a class="nav-link "><span th:text="${user.name}"></span></a>-->
                 <!--</li>-->
 
-                <li class="nav-item">
-                    <a class="nav-link " th:href="@{/logout}">Logout</a>
-                </li>
+                <!--<li class="nav-item">-->
+                    <!--<a class="nav-link " th:href="@{/logout}">Logout</a>-->
+                <!--</li>-->
             </ul>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -48,72 +48,48 @@
                     <!--<a th:href="@{'/user/excel/'}" title="Detail" onclick="Showpopup()">-->
                     <a class="btn fa fa-user text-white" title="Detail" th:onclick="Showopup()" data-bs-target="#cartt" data-bs-toggle="modal" >
                     </a>
-                    <div class="modal fade center-modal" id="cartt" tabindex="-1" aria-labelledby="SelectClass" aria-hidden="true">
-                        <div class="modal-dialog px-15">
-                            <div class="modal-content rounded-12">
+                    <div class="modal fade center-modal" id="cartt">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
                                 <div class="modal-header pb-0 bb-0 text-center" >
                                     <div class="container" th:text="${user.name}"></div>
                                 </div>
                                 <div class="modal-body">
                                     <div class="row">
-                                        <div class="col-sm-12 d-flex">
-                                            <form th:action="@{/user/update-user}" enctype="multipart/form-data"  method="post">
-                                            <img style="height: 130px; width: 130px" class="my_profile_picture" src="" th:src="@{'/image/'+${user.imageUrl}}" alt="profile photo">
-                                            <div class=" mt-5">
-                                                <input style="font-size:x-small" type="file" name="userProfileImage" id="userProfileImage">
-                                            </div>
-                                            <div>
-                                            <button class="btn btn-primary rounded-2 mt-5" type="submit">Apply</button>
-                                            </div>
+                                        <div class="d-flex">
+                                            <form >
+                                                <img style="height: 100px; width: 100px" class="my_profile_picture" src="" th:src="@{'/image/'+${user.imageUrl}}" alt="profile photo">
+                                                <div class=" mt-5 ms-5">
+                                                    <span th:text="${user.role}"></span>
+                                                </div>
+                                                <!-- <div>
+                                                 <button class="btn btn-primary rounded-2 mt-5" type="submit">Apply</button>
+                                                 </div>-->
                                             </form>
                                         </div>
                                         <hr>
-                                        <div class="col-sm-12 mt-10 d-flex justify-content-between">
+                                        <div class=" mt-10 d-flex justify-content-between">
                                             <a th:href="@{/logout}" class="container d-flex" style="text-decoration: none">
-                                            <div  class="my_profile_picture" style="background: #1d347c; height: 40px; width: 40px; padding-left: 12px; padding-top: 8px; color: white;">
-                                                <i class="fa fa-sign-out" aria-hidden="true"></i>
-                                            </div>
-                                                <span style="padding-left: 5px; padding-top: 7px; color: black;">Logout</span>
+                                                <div  class="my_profile_picture" style="background: #1d347c; height: 40px; width: 40px; padding-left: 12px; padding-top: 8px; color: white;">
+                                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                                </div>
+                                                <span style="padding-left: 5px; padding-top: 7px; color: black;font-size: small;">Logout</span>
                                             </a>
 
                                             <a th:href="@{/user/settings}" class="container d-flex justify-content-end" style="text-decoration: none">
-                                            <div class="my_profile_picture" style="background: #7c1163; height: 40px; width: 40px; padding-left: 12px; padding-top: 8px; color: white;">
-                                            <i class="bi bi-lock-fill" aria-hidden="true"></i>
-                                            </div>
-                                                <span style="padding-left: 5px; padding-top: 7px; color: black;">Change Password</span>
+                                                <div class="my_profile_picture" style="background: #7c1163; height: 40px; width: 40px; padding-left: 12px; padding-top: 8px; color: white;">
+                                                    <i class="bi bi-lock-fill" aria-hidden="true"></i>
+                                                </div>
+                                                <span style="padding-left: 5px; padding-top: 7px; color: black;font-size: small;">Change Password</span>
                                             </a>
                                         </div>
-                                        <!--<div class="col-sm-12 text-center mt-15">-->
-                                            <!--<button class="btn-primary rounded-2 px-20 w-80">Apply</button>-->
-                                        <!--</div>-->
+
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
-                    <!--Model-->
-                    <!--<div class="modal fade" id="cartt">-->
-                        <!--<div class="modal-dialog">-->
-                            <!--<div class="modal-content">-->
-                                <!--<div class="modal-header">-->
-                                    <!--<h3> Items</h3>-->
-                                    <!--<button data-bs-dismiss="modal" class="btn-close"></button>-->
-                                <!--</div>-->
-                                <!--<div class="modal-body">-->
-                                    <!--<table class="table table-hover">-->
-                                        <!--<thead>-->
-                                        <!--<tr>-->
-                                            <!--<th>Preview</th>-->
-                                        <!--</tr>-->
-                                        <!--</thead>-->
-                                        <!--<tbody>-->
-                                        <!--</tbody>-->
-                                    <!--</table>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--model End-->
 
                 </div>
             </form>

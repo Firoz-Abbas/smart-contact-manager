@@ -11,7 +11,7 @@
         <div class="card">
             <div class="cord-body">
                 <div class="container text-center">
-                    <img style="height: 200px; width: 200px" class="my_profile_picture" src="" th:src="@{'/image/contact.png'}" alt="profile photo">
+                    <img style="height: 200px; width: 200px" class="my_profile_picture" src="" th:src="@{'/image/'+${user.imageUrl}}" alt="profile photo">
                 </div>
                 <h3 class="text-center text-secondary font-italic font-weight-light">Start adding your contact on cloud........</h3>
                 <div class="container mt-3 mb-3 text-center d-grid">
