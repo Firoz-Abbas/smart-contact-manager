@@ -1,6 +1,7 @@
 package com.smart.controller;
 
-import com.mysql.cj.Session;
+import com.razorpay.Order;
+import com.razorpay.RazorpayClient;
 import com.smart.dao.ContactRepository;
 import com.smart.dao.MyOrderRepository;
 import com.smart.dao.UserRepository;
@@ -15,13 +16,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.method.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import com.razorpay.*;
 
 import javax.servlet.http.HttpSession;
 import java.io.File;
@@ -236,24 +235,30 @@ public class UserController {
                                   Principal principal,
                                   HttpSession session)throws Exception{
         try {
-            String name=principal.getName();
-            User user=userRepository.getUserByUserName(name);
+            String username=principal.getName();
+            User user=userRepository.getUserByUserName(username);
             Contact oldcontact=this.contactRepository.findById(contact.getcId()).get();
+            String name = file.getOriginalFilename();
 
 //            Proccessing and uploading file
             if (file.isEmpty()){
 //              if file empty then try over message
-//                File deleteFile= new ClassPathResource("static/image").getFile();
-//                File file1 = new File(deleteFile,oldcontact.getImage());
-//                file1.delete();
-                contact.setImage(oldcontact.getImage());
-//                System.out.println("Image is empty");
+//                contact.setImage(oldcontact.getImage());
             }else {
 //                file to forlder
-                contact.setImage(file.getOriginalFilename());
+
+                File deleteFile= new ClassPathResource("static/image").getFile();
+                File file1 = new File(deleteFile,oldcontact.getImage());
+                file1.delete();
+//                save newImage
+
                 File saveFile=new ClassPathResource("static/image").getFile();
-                Path path = Paths.get(saveFile.getAbsolutePath()+File.separator+file.getOriginalFilename());
+                String randomID= UUID.randomUUID().toString();
+                String FileName1= randomID.concat(name.substring(name.lastIndexOf(".")));
+                contact.setImage(FileName1);
+                Path path = Paths.get(saveFile.getAbsolutePath()+File.separator+FileName1);
                 Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+
 //                System.out.println("Image is uploaded");
 
             }
